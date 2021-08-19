@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { SharedModule } from './shared/shared.module';
 import { CommonModule } from '@angular/common';
-import { HomeModule } from './views/home/home/home.module';
+import { HomeModule } from './views/home/home.module';
 
 @NgModule({
   declarations: [
