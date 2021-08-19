@@ -7,7 +7,7 @@ export class Store {
     city: string;
     street: string;
     number: number;
-    products: Product[];
+    categoryProducts: Product[];
     constructor(
         storeName: string,
         province: string,
@@ -15,14 +15,14 @@ export class Store {
         street: string,
         number: number,
         id?: number,
-        products?: Product[]
+        categoryProducts?: Product[]
     ) {
         this.storeName = storeName;
         this.province = province;
         this.city = city;
         this.street = street;
         this.number = number;
-        this.products=products;
+        this.categoryProducts=categoryProducts;
         if (id){
             this.id = id;
         }

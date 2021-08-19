@@ -14,9 +14,12 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatSelectModule} from '@angular/material/select';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatDialogModule} from '@angular/material/dialog';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { HomeModule } from '../views/home/home/home.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -37,6 +40,10 @@ import { NgModule } from '@angular/core';
     MatDialogModule,
     FormsModule,
     MatProgressSpinnerModule,
+    HttpClientModule,
+
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [
   ],
@@ -56,6 +63,7 @@ import { NgModule } from '@angular/core';
     MatDialogModule,
     FormsModule,
     MatProgressSpinnerModule,
+    HttpClientModule,
   ]
 })
 export class SharedModule {
