@@ -1,0 +1,32 @@
+<p>store works!</p>
+
+
+<div *ngIf="spinner == false">
+
+    <mat-form-field appearance="fill">
+        <mat-label>Categorieën</mat-label>
+        <mat-select [(value)]="selectedCategory" (selectionChange)="submit($event)">
+            <mat-option value="{{store.storeName}}">
+                Alle
+            </mat-option>
+            <mat-option *ngFor="let category of categories" value="{{category}}">
+                {{category}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <p> Selected car: {{selectedCategory}} </p>
+
+    <h1>
+        {{store.storeName}}
+    </h1>
+
+    <div *ngFor="let product of categoryProducts">
+        <p>
+            {{product.articleNumber}}
+            <a routerLink="/store/{{store.storeName}}/detail/{{product.articleNumber}}" class="review"><i
+                    class="material-icons" data-toggle="tooltip" title="Edit">&#xE255;</i></a>
+        </p>
+    </div>
+
+</div>

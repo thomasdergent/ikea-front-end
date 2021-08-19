@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product/product.model';
 import { Store } from 'src/app/models/store/store.model';
 import { IkeaService } from 'src/app/services/ikea-service/ikea-service.service';
@@ -13,8 +15,10 @@ export class HomeComponent implements OnInit {
   test: Store;
   stores: Store[];
   categoryProducts: Product[];
+  storeForm: FormGroup;
 
   constructor(
+    private router: Router,
     private ikeaservice: IkeaService,
   ) {
 
@@ -42,4 +46,9 @@ export class HomeComponent implements OnInit {
       }
     )
   }
+
+  submit(event: any) {
+    this.router.navigate(['/products/store/' + event.value]);
+  }
+
 }

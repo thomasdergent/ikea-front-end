@@ -18,7 +18,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { HomeModule } from '../views/home/home/home.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
@@ -64,6 +63,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     MatProgressSpinnerModule,
     HttpClientModule,
+    
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
   ]
 })
 export class SharedModule {

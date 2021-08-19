@@ -1,38 +1,12 @@
 <p>home works!</p>
 
+
 <mat-form-field appearance="fill">
     <mat-label>Winkels</mat-label>
-    <mat-select>
-      <mat-option *ngFor="let store of stores" [value]="store.storeName">
-        {{store.storeName}}
-      </mat-option>
+    <mat-select (selectionChange)="submit($event)">
+        <mat-option *ngFor="let store of stores" value="{{store.storeName}}">
+            {{store.storeName}}
+        </mat-option>
     </mat-select>
-  </mat-form-field>
+</mat-form-field>
 
-<table>
-    <thead>
-        <tr>
-            <th>Store</th>
-        </tr>
-    </thead>
-    <tbody *ngFor="let store of stores">
-
-        <tr>
-            <td>{{store.storeName}}</td>
-        </tr>
-    </tbody>
-</table>
-
-<table>
-    <thead>
-        <tr>
-            <th>Artikel</th>
-        </tr>
-    </thead>
-    <tbody *ngFor="let article of test.categoryProducts">
-
-        <tr>
-            <td>{{article.articleNumber}}</td>
-        </tr>
-    </tbody>
-</table>
