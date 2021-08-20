@@ -1,0 +1,63 @@
+<div class="content">
+  <div id="main">
+
+    <h1>
+      <mat-divider></mat-divider>
+      {{store.storeName}} <mat-icon color="accent" class="icon-display">arrow_right</mat-icon> <span>Overzicht</span>
+      <mat-divider></mat-divider>
+    </h1>
+
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <h5>
+              Filters
+            </h5>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-divider></mat-divider>
+        <div class="row">
+          <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+            <mat-form-field appearance="fill">
+              <mat-label>Categorieën</mat-label>
+              <mat-select [(value)]="selectedCategory" (selectionChange)="submitCategory($event)">
+                <mat-option value="{{store.storeName}}">
+                  Alle
+                </mat-option>
+                <mat-option *ngFor="let category of categories" value="{{category}}">
+                  {{category}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+
+    <div class="row product">
+      <div *ngFor="let product of categoryProducts">
+
+        <div class="col-12">
+          <a routerLink="/store/{{store.storeName}}/article/{{product.articleNumber}}" class="review">
+            <div class="card shadow" style="max-width: 23rem;">
+              <img class="card-img-top"
+                src="https://www.ikea.com/be/nl/images/products/lagkapten-alex-bureau-wit-gelazuurd-eiken-wit__0976179_pe813072_s5.jpg?f=xl"
+                alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">{{product.name}}
+                  <p class="card-text"><small class="text-muted">{{product.category}}</small></p>
+                </h5>
+                <h5 class="card-title"><span class="price">€{{product.price}}</span></h5>
+              </div>
+            </div>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>

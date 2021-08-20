@@ -24,9 +24,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { DetailProductModule } from '../views/detail-product/detail-product.module';
 import { HomeModule } from '../views/home/home.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { StoreModule } from '../views/store/store.module';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   imports: [
@@ -49,6 +49,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     MatSidenavModule,
     ReactiveFormsModule,
     MatToolbarModule,
+    MatCardModule,
+    NgbModule,
   ],
   providers: [
   ],
@@ -73,7 +75,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
     ReactiveFormsModule,
     MatToolbarModule,
     ReactiveFormsModule,
-
+    MatCardModule,
+    NgbModule,
   ]
 })
 export class SharedModule {

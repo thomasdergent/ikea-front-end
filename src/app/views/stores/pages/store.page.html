@@ -1,0 +1,35 @@
+<mat-toolbar class="mat-elevation-z8">
+    <button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+        <mat-icon *ngIf="!sidenav.opened">
+            menu
+        </mat-icon>
+        <mat-icon *ngIf="sidenav.opened">
+            close
+        </mat-icon>
+    </button>
+    <a id="navTitle" [routerLink]="['/']">
+        Ikea meubels
+    </a>
+
+    <div class="toolbar-spacer"></div>
+
+</mat-toolbar>
+
+<mat-sidenav-container>
+    <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z10">
+
+
+        <mat-divider></mat-divider>
+        <button mat-button class="menu-button" routerLink="/store/home">
+            <span>Home</span>
+        </button>
+        <div class="test" *ngFor="let store of stores">
+            <button mat-button class="menu-button" routerLink="/store/{{store.storeName}}/products">
+                <span> {{store.storeName}}</span>
+            </button>
+        </div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,77 @@
+<div class="content detail">
+  <div id="main">
+
+    <div *ngIf="spinner == false">
+
+      <div *ngFor="let product of categoryProducts">
+
+        <h1>
+          <mat-divider></mat-divider>
+          {{store.storeName}} <mat-icon color="accent" class="icon-display">arrow_right</mat-icon>
+          <span>{{product.name}}</span>
+          <mat-divider></mat-divider>
+        </h1>
+
+
+        <div class="row">
+          <div class="col-5 justify-content-center">
+            <img
+              src="https://www.ikea.com/be/nl/images/products/lagkapten-alex-bureau-wit-gelazuurd-eiken-wit__0976179_pe813072_s5.jpg?f=xl"
+              alt="">
+          </div>
+          <div class="col-5">
+            <h2>
+             €{{product.price}}
+            </h2>
+            <p class="font-weight-bold" *ngIf="product.delivery">
+             <span class="price">Beschikbaar voor levering</span>
+            </p>
+            <p class="font-weight-bold" *ngIf="!product.delivery">
+              Beschikbaar voor levering
+            </p>
+            <p class="font-weight-light">
+              Artikelnummer: {{product.articleNumber}}
+            </p>
+            <mat-divider></mat-divider>
+            <p class="font-weight-bold">
+              Afmetingen
+            </p>
+            <p>
+              {{product.size}}
+            </p>
+            <mat-divider></mat-divider>
+            <p>
+              Totaal items in stock: {{product.stock}}
+            </p>
+            <ngb-accordion #acc="ngbAccordion">
+              <ngb-panel id="toggle-1" class="accordion-title" title="Materiaal & onderhoud">
+                <ng-template ngbPanelContent>
+                  <p class="font-weight-bold">
+                    Materiaal
+                  </p>
+                  <p>
+                    {{product.material}}
+                  </p>
+                  <p class="font-weight-bold">
+                    Onderhoud
+                  </p>
+                  <p>
+                    {{product.maintenance}}
+                  </p>
+                </ng-template>
+              </ngb-panel>  
+              <ngb-panel id="toggle-2" title="Duurzaamheid & milieu">
+                <ng-template ngbPanelContent>
+                  <p class="font-weight-bold">
+                    Duurzaamheid
+                  </p>
+                  <p>
+                    {{product.environment}}
+                  </p>
+                </ng-template>
+              </ngb-panel>  
+            </ngb-accordion>
+          </div>
+        </div>
+
+      </div>

@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/models/product/product.model';
 import { Store } from 'src/app/models/store/store.model';
 import { IkeaService } from 'src/app/services/ikea-service/ikea-service.service';
 
 @Component({
-  selector: 'app-store',
-  templateUrl: './store.component.html',
-  styleUrls: ['./store.component.scss']
+  templateUrl: './store-overview.component.html',
+  styleUrls: ['./store-overview.component.scss']
 })
-export class StoreComponent implements OnInit {
+export class StoreOverviewComponent implements OnInit {
 
   store: Store;
   categoryProducts: Product[];
@@ -28,39 +31,27 @@ export class StoreComponent implements OnInit {
   ngOnInit(): void {
   }
 
-
   loadArticle() {
-    const storeName = this.route.snapshot.paramMap.get('storeName');
+    this.route.params.subscribe(params => {
+
+      const storeName = params['storeName'];
     this.ikeaservice.getProductsByStoreName(storeName).subscribe(
       result => {
         this.store = result;
         this.categoryProducts = result.categoryProducts;
-        console.log(result);
-        console.log(result.categoryProducts);
 
         this.categories = this.categoryProducts.map(item => item.category)
           .filter((value, index, self) => self.indexOf(value) === index)
 
-        console.log(this.categories);
-
         if (result) {
           this.spinner = false;
         }
-
-        let array = [
-          { "name": "Joe", "age": 17 },
-          { "name": "Bob", "age": 17 },
-          { "name": "Carl", "age": 35 }
-        ];
-        let arraytest = array.map(item => item.age)
-          .filter((value, index, self) => self.indexOf(value) === index)
-
-        console.log(arraytest);
       }
     )
+  });
   }
 
-  submit(event: any) {
+  submitCategory(event: any) {
     this.spinner = true;
 
     if (event.value == this.store.storeName) {
@@ -87,7 +78,4 @@ export class StoreComponent implements OnInit {
       )
     }
   }
-
-
-
 }
