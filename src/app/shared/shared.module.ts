@@ -19,8 +19,12 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-
+import { AppRoutingModule } from '../app-routing.module';
+import { BrowserModule } from '@angular/platform-browser';
+import { DetailProductModule } from '../views/detail-product/detail-product.module';
+import { HomeModule } from '../views/home/home.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { StoreModule } from '../views/store/store.module';
 
 @NgModule({
   imports: [
@@ -42,7 +46,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
 
     ReactiveFormsModule,
-    BrowserAnimationsModule,
   ],
   providers: [
   ],
@@ -65,7 +68,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     
     ReactiveFormsModule,
-    BrowserAnimationsModule,
+
+    ReactiveFormsModule,
+
   ]
 })
 export class SharedModule {

@@ -10,21 +10,30 @@ import { CommonModule } from '@angular/common';
 import { HomeModule } from './views/home/home.module';
 import { StoreModule } from './views/store/store.module';
 import { DetailProductModule } from './views/detail-product/detail-product.module';
+import { AdminDetailsModule } from './views/admin-details/admin-details.module';
+import { AdminHomeComponent } from './views/admin-home/admin-home/admin-home.component';
+import { AdminOverviewComponent } from './views/admin-overview/admin-overview/admin-overview.component';
+import { AdminDetailsComponent } from './views/admin-details/admin-details/admin-details.component';
+import { AdminModule } from './views/admin/admin.module';
 
 @NgModule({
   declarations: [
     AppComponent,
+    AdminHomeComponent,
+    AdminOverviewComponent,
+    AdminDetailsComponent,
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    NgbModule,
     SharedModule,
-    CommonModule,
     HomeModule,
     StoreModule,
     DetailProductModule,
+    AdminDetailsModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+    NgbModule,
+    AdminModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

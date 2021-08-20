@@ -8,6 +8,10 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'products/store/:storeName', component: StoreComponent },
   { path: 'store/:storeName/detail/:articleNumber', component: DetailProductComponent },
+  {
+    path: 'admin',
+    loadChildren: () => import('../app/views/admin/admin.module').then((m) => m.AdminModule),
+  },
   //errors
   { path: '', redirectTo: "home", pathMatch:'full'},
   //wrong url
