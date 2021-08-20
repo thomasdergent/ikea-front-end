@@ -1,0 +1,35 @@
+@import "./variables";
+
+mat-accordion{
+    border-radius: 15px !important;
+    width: 76.5vw !important;
+    margin-bottom: 2rem !important;
+    padding: 0.4rem !important;
+}
+
+mat-expansion-panel{
+  border-radius: 15px !important;
+  width: 76.5vw !important;
+}
+
+.accordion-wrapper{
+  border-radius: 15px !important;
+}
+
+mat-expansion-panel-header{
+  padding: 30px !important;
+}
+
+
+mat-panel-title h5{
+    font-size: 1.5rem !important;
+    color: black !important;
+}
+
+@media only screen and (max-width: 1100px) {
+  mat-expansion-panel{
+    border-radius: 15px !important;
+    width: 70vw !important;
+  }
+  
+}

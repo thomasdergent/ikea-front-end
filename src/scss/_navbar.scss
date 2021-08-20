@@ -1,0 +1,109 @@
+@import "./variables";
+
+mat-toolbar {
+    background: $primaryColor !important;
+    color: $white !important;
+}
+
+#navTitle{
+    cursor: pointer;
+    text-decoration: none !important;
+    color: $white !important;
+}
+
+.toolbar-spacer {
+    flex: 1 1 auto;
+  }
+
+mat-sidenav {
+    margin: 16px !important;
+    width: 200px !important;
+    border-right: none;
+    background: $primaryColor !important;
+    color: $white !important;
+    border-radius: 15px !important;
+    padding: 16px !important;
+    text-align: center;
+}
+
+.content {
+    border-radius: 15px !important;
+    margin: 14px !important;
+    margin-left: 32px !important;
+
+    display: flex;
+
+
+    padding-left: 4%;
+    padding-right: 4%;
+}
+
+.content #main p{
+    font-size: 1em;
+}
+
+mat-sidenav-container {
+    height: calc(100vh - 65px) !important;
+}
+
+.menu-button {
+    width: 100%;
+    align-items: center;
+    font-size: 1rem !important;
+    text-align: center !important;
+    color: $white !important;
+    font-size: 1rem;
+
+    mat-icon {
+        margin-right: 8px;
+    }
+}
+
+mat-button .span{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 1rem !important;
+    text-align: center !important;
+
+    mat-icon {
+        margin-right: 8px;
+    }
+}
+
+.avatar {
+    margin-top: 16px !important;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+
+.name {
+    margin-top: 8px !important;
+    font-weight: normal;
+    font-size: 1.3em !important;
+}
+
+.designation {
+
+    font-size: 1rem !important;
+    color: lightgrey !important;
+}
+
+mat-divider {
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+    background-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+
+
+
+
+
+
+
+
+
+

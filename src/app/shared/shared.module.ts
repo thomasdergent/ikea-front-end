@@ -25,6 +25,8 @@ import { DetailProductModule } from '../views/detail-product/detail-product.modu
 import { HomeModule } from '../views/home/home.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { StoreModule } from '../views/store/store.module';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatToolbarModule} from '@angular/material/toolbar';
 
 @NgModule({
   imports: [
@@ -44,8 +46,9 @@ import { StoreModule } from '../views/store/store.module';
     FormsModule,
     MatProgressSpinnerModule,
     HttpClientModule,
-
+    MatSidenavModule,
     ReactiveFormsModule,
+    MatToolbarModule,
   ],
   providers: [
   ],
@@ -66,9 +69,9 @@ import { StoreModule } from '../views/store/store.module';
     FormsModule,
     MatProgressSpinnerModule,
     HttpClientModule,
-    
+    MatSidenavModule,
     ReactiveFormsModule,
-
+    MatToolbarModule,
     ReactiveFormsModule,
 
   ]

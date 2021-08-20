@@ -1,0 +1,88 @@
+@import "./variables";
+
+mat-icon{
+    cursor: pointer !important;
+    margin-left: 5px !important;
+}
+
+.addIcon{
+    color: $addColor;
+}
+
+.addIcon:hover{
+  color: $addColorHover;
+}
+
+.addIcon:active{
+  color: $addColorHover;
+}
+
+.addIcon:focus{
+  color: $addColorHover;
+}
+
+.editIcon{
+  color: $editColor;
+}
+
+.editIcon:hover{
+color: $editColorHover;
+}
+
+.editIcon:active{
+color: $editColorHover;
+}
+
+.editIcon:focus{
+color: $editColorHover;
+}
+
+.deleteIcon{
+  color: $deleteColor;
+}
+
+.deleteIcon:hover{
+color: $deleteColorHover;
+}
+
+.deleteIcon:active{
+color: $deleteColorHover;
+}
+
+.deleteIcon:focus{
+color: $deleteColorHover;
+}
+
+.detailIcon{
+  color: $detailColor;
+}
+
+.detailIcon:hover{
+color: $detailColorHover;
+}
+
+.detailIcon:active{
+color: $detailColorHover;
+}
+
+.detailIcon:focus{
+color: $detailColorHover;
+}
+
+
+.copyIcon{
+  color: $copyColor;
+}
+
+.copyIcon:hover{
+color: $copyColorHover;
+}
+
+.copyIcon:active{
+color: $copyColorHover;
+}
+
+.copyIcon:focus{
+color: $copyColorHover;
+}
+

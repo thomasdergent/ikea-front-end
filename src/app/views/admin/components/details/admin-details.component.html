@@ -1,24 +1,24 @@
-<!-- Dit is de hoofd / slimme component van de feature, noemen we dus een "page" component -->
-<!-- Afhankelijk van de main route (bv /containers) wordt een page component ingeladen. Deze bevat amper html en altijd een router-outlet -->
-<!-- Afhankelijk van de child routes (bv /overview of /{id}) wordt een child component ingeladen of een dialog / modal weergegeven -->
-<p>
-    header
-</p>
+<div class="content">
+    <div id="main">
 
-<h1>
-    {{store.storeName}}
-</h1>
+        <h1>
+            <mat-divider></mat-divider>
+            {{store.storeName}} <mat-icon color="accent" class="icon-display">arrow_right</mat-icon>
+            <span>Details</span>
+            <mat-divider></mat-divider>
+        </h1>
 
-<div *ngFor="let product of categoryProducts">
+        <div *ngFor="let product of categoryProducts">
 
-    {{product.articleNumber}}
+            {{product.articleNumber}}
 
 
-    <form class="example-form">
-        <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Favorite food</mat-label>
-          <input matInput placeholder="Ex. Pizza" value="Sushi">
-        </mat-form-field>
-    </form>
+            <form class="example-form">
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Favorite food</mat-label>
+                    <input matInput placeholder="Ex. Pizza" value="Sushi">
+                </mat-form-field>
+            </form>
+        </div>
+    </div>
 </div>
-<router-outlet></router-outlet>

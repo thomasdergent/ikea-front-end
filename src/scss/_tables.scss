@@ -1,0 +1,52 @@
+@import "./variables";
+
+.mat-table
+{
+  background-color:transparent!important;  
+
+}
+
+mat-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
+mat-paginator {
+    background-color:transparent!important;  
+    width: 100%;
+    border-collapse: collapse;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+  }
+
+  .table-wrapper{
+      border-radius: 15px !important;
+      text-align: center !important;
+      justify-content: center !important;
+      margin-bottom: 2rem !important;
+      justify-content: center;
+      align-items: center;
+  }
+
+  mat-header-cell /*To remove the last border*/
+{
+  border-bottom: 1px solid darkgray !important;
+  color: black !important;
+  font-weight: bold !important;
+  font-size: 1rem !important;
+}
+
+mat-header-cell, mat-cell{
+  font-size: 1rem !important;
+}
+
+mat-row:hover{
+  background: $tableHover !important;
+}
+
+.mat-cell-right{
+  display: flex !important;
+  justify-content: flex-end !important;
+}

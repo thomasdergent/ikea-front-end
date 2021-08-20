@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { BreakpointObserver } from '@angular/cdk/layout';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSidenav } from '@angular/material/sidenav';
 import { Router } from '@angular/router';
 import { Store } from 'src/app/models/store/store.model';
 import { IkeaService } from 'src/app/services/ikea-service/ikea-service.service';
@@ -8,13 +10,28 @@ import { IkeaService } from 'src/app/services/ikea-service/ikea-service.service'
   styleUrls: ['./admin.page.scss']
 })
 export class AdminPageComponent implements OnInit {
+  @ViewChild(MatSidenav)
+  sidenav!: MatSidenav;
   
   stores: Store[];
 
   constructor(
     private router: Router,
     private ikeaservice: IkeaService,
+    private observer: BreakpointObserver,
   ) { }
+
+  ngAfterViewInit() {
+    this.observer.observe(['(max-width: 800px)']).subscribe((res) => {
+      if (res.matches) {
+        this.sidenav.mode = 'over';
+        this.sidenav.close();
+      } else {
+        this.sidenav.mode = 'side';
+        this.sidenav.open();
+      }
+    });
+  }
 
   ngOnInit(): void {
     this.ikeaservice.getStores().subscribe(

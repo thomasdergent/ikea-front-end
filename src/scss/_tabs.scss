@@ -1,0 +1,17 @@
+@import "./variables";
+
+.mat-tab-group{
+    border-radius: 15px !important;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 2rem;
+}
+
+.mat-tab-label {
+    padding: 5px;
+    background-color: transparent;
+    color: black !important;
+    font-weight: bold;
+    font-size: 1rem;
+}
+

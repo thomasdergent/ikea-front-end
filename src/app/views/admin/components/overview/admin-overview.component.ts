@@ -25,13 +25,19 @@ export class AdminOverviewComponent implements OnInit {
     private route: ActivatedRoute,
     private ikeaservice: IkeaService,
   ) { 
-    this.loadArticle();
+    this.loadProducts();
   }
 
   ngOnInit(): void {
   }
 
-  loadArticle() {
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  
+
+  loadProducts() {
     this.route.params.subscribe(params => {
 
     const storeName = params['storeName'];
@@ -39,8 +45,6 @@ export class AdminOverviewComponent implements OnInit {
       result => {
         this.store = result;
         this.categoryProducts = result.categoryProducts;
-        console.log(result);
-        console.log(result.categoryProducts);
 
         this.dataSource = new MatTableDataSource<Product>(result.categoryProducts);
         console.log(this.dataSource);
@@ -48,23 +52,39 @@ export class AdminOverviewComponent implements OnInit {
         this.categories = this.categoryProducts.map(item => item.category)
           .filter((value, index, self) => self.indexOf(value) === index)
 
-        console.log(this.categories);
-
         if (result) {
           this.spinner = false;
         }
-
-        let array = [
-          { "name": "Joe", "age": 17 },
-          { "name": "Bob", "age": 17 },
-          { "name": "Carl", "age": 35 }
-        ];
-        let arraytest = array.map(item => item.age)
-          .filter((value, index, self) => self.indexOf(value) === index)
-
-        console.log(arraytest);
       }
     )
   });
+  }
+
+  submitCategory(event: any) {
+    this.spinner = true;
+
+    if (event.value == this.store.storeName) {
+      this.ikeaservice.getProductsByStoreName(event.value).subscribe(
+        result => {
+          this.store = result;
+          this.categoryProducts = result.categoryProducts;
+          this.dataSource = new MatTableDataSource<Product>(result.categoryProducts);
+          if (result) {
+            this.spinner = false;
+          }
+        }
+      )
+    } else {
+      this.ikeaservice.getProductsByStoreNameAndCategory(this.store.storeName, event.value).subscribe(
+        result => {
+          this.store = result;
+          this.categoryProducts = result.categoryProducts;
+          this.dataSource = new MatTableDataSource<Product>(result.categoryProducts);
+          if (result) {
+            this.spinner = false;
+          }
+        }
+      )
+    }
   }
 }

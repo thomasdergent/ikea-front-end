@@ -5,3 +5,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 /* Importing Bootstrap SCSS file. */
 @import '~bootstrap/scss/bootstrap';
+
+@import "./navbar";
+@import "./variables";
+@import "./expension-panels";
+@import "./forms";
+@import "./icons";
+@import "./tables";
+@import "./buttons";
+@import "./general";
+@import "./tabs";
+@import "./dialog";
+@import "./spinner";

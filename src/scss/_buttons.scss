@@ -1,0 +1,51 @@
+@import "./variables";
+
+.addButton{
+    background-color: $addColor;
+    color: $white;
+}
+
+.addButton:hover{
+    background-color: $addColorHover;
+  color: $white;
+}
+
+.addButton:active{
+  background-color: $addColorHover;
+  color: $white;
+}
+
+.editButton{
+    background-color: $editColor;
+  color: black;
+}
+
+.editButton:hover{
+    background-color: $editColorHover;
+color: black;
+}
+
+.editButton:active{
+    background-color: $editColorHover;
+color: black;
+}
+
+.deleteButton{
+    background-color: $deleteColor;
+  color: $white;
+}
+
+.deleteButton:hover{
+    background-color: $deleteColorHover;
+color: $white;
+}
+
+.deleteButton:active{
+    background-color: $deleteColorHover;
+color: $white;
+}
+
+.deleteButton:focus{
+    background-color: $deleteColorHover;
+color: $white;
+}
