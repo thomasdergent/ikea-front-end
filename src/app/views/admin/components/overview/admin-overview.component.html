@@ -82,7 +82,7 @@
             <a routerLink="/admin/edit/store/{{store.storeName}}/article/{{product.articleNumber}}">
               <mat-icon class="editIcon" data-toggle="modal">create</mat-icon>
             </a>
-            <mat-icon class="deleteIcon" data-toggle="modal">remove_circle</mat-icon>
+            <mat-icon class="deleteIcon" data-toggle="modal" (click)="deleteDialog(store.storeName, product.articleNumber, product.name)">remove_circle</mat-icon>
           </mat-cell>
         </ng-container>
 

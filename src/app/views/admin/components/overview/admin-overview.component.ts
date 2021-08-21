@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/models/product/product.model';
 import { Store } from 'src/app/models/store/store.model';
 import { IkeaService } from 'src/app/services/ikea-service/ikea-service.service';
+import { AdminDeleteComponent } from '../delete/admin-delete.component';
 
 @Component({
   templateUrl: './admin-overview.component.html',
@@ -24,7 +26,8 @@ export class AdminOverviewComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private ikeaservice: IkeaService,
-  ) { 
+    public dialog: MatDialog,
+  ) {
     this.loadProducts();
   }
 
@@ -35,29 +38,29 @@ export class AdminOverviewComponent implements OnInit {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
-  
+
 
   loadProducts() {
     this.route.params.subscribe(params => {
 
-    const storeName = params['storeName'];
-    this.ikeaservice.getProductsByStoreName(storeName).subscribe(
-      result => {
-        this.store = result;
-        this.categoryProducts = result.categoryProducts;
+      const storeName = params['storeName'];
+      this.ikeaservice.getProductsByStoreName(storeName).subscribe(
+        result => {
+          this.store = result;
+          this.categoryProducts = result.categoryProducts;
 
-        this.dataSource = new MatTableDataSource<Product>(result.categoryProducts);
-        console.log(this.dataSource);
+          this.dataSource = new MatTableDataSource<Product>(result.categoryProducts);
+          console.log(this.dataSource);
 
-        this.categories = this.categoryProducts.map(item => item.category)
-          .filter((value, index, self) => self.indexOf(value) === index)
+          this.categories = this.categoryProducts.map(item => item.category)
+            .filter((value, index, self) => self.indexOf(value) === index)
 
-        if (result) {
-          this.spinner = false;
+          if (result) {
+            this.spinner = false;
+          }
         }
-      }
-    )
-  });
+      )
+    });
   }
 
   submitCategory(event: any) {
@@ -86,5 +89,14 @@ export class AdminOverviewComponent implements OnInit {
         }
       )
     }
+  }
+
+  deleteDialog(storeName, articleNumber, name): void {
+    const dialogRef = this.dialog.open(AdminDeleteComponent, {
+      data: { storeName: storeName, articleNumber: articleNumber, name: name}
+    } );
+    dialogRef.afterClosed().subscribe(result => {
+      this.loadProducts();
+    });
   }
 }

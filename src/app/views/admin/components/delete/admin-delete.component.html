@@ -1,0 +1,10 @@
+<h1 mat-dialog-title>Verwijder artikel <span class="notAvailable font-weight-bold">{{data.articleNumber}}</span></h1>
+<div mat-dialog-content>
+  <span>Ben je zeker dat je product <span class="price font-weight-bold">{{data.name}}</span> uit winkel <span
+      class="price font-weight-bold">{{data.storeName}} </span> wil verwijderen?</span>
+</div>
+<div mat-dialog-actions>
+  <button mat-button cdkFocusInitial style="display: none;"></button>
+  <button mat-button (click)="onNoClick()" class="editButton">Annuleer</button>
+  <button mat-button class="deleteButton" (click)="deleteProduct()">Verwijder</button>
+</div>
