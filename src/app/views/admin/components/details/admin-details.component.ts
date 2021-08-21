@@ -10,10 +10,14 @@ import { IkeaService } from 'src/app/services/ikea-service/ikea-service.service'
 })
 export class AdminDetailsComponent implements OnInit {
   store: Store;
-  categoryProducts: Product[];
+  categoryProduct: Product[];
+  tempCategories: Product[];
+  updateProduct: Product;
   spinner: Boolean = true;
   categories: any;
   selectedCategory = 'domain';
+  delivery: Boolean;
+  test: string[] = [];
 
   constructor(
     private router: Router,
@@ -22,41 +26,45 @@ export class AdminDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
- this.loadArticle();
+    this.loadCategories();
+    this.loadArticle();
+
   }
 
   loadArticle() {
     const storeName = this.route.snapshot.paramMap.get('storeName');
     const articleNumber = this.route.snapshot.paramMap.get('articleNumber');
 
-    console.log(storeName)
-    console.log(articleNumber)
     this.ikeaservice.getProductByStoreNameAndArticleNumber(storeName, articleNumber).subscribe(
       result => {
         this.store = result;
-        this.categoryProducts = result.categoryProducts;
+        this.categoryProduct = result.categoryProducts;
         console.log(result);
         console.log(result.categoryProducts);
-
-        this.categories = this.categoryProducts.map(item => item.category)
-          .filter((value, index, self) => self.indexOf(value) === index)
-
         console.log(this.categories);
 
         if (result) {
           this.spinner = false;
         }
-
-        let array = [
-          { "name": "Joe", "age": 17 },
-          { "name": "Bob", "age": 17 },
-          { "name": "Carl", "age": 35 }
-        ];
-        let arraytest = array.map(item => item.age)
-          .filter((value, index, self) => self.indexOf(value) === index)
-
-        console.log(arraytest);
       }
     )
-    }
+  }
+
+  loadCategories() {
+    this.test.push("Zetels", "Bureaus", "Stoelen", "Bedden", "Fauteuils", "Kasten", "Mediameubels");
+    this.test.sort();
+  }
+
+  submitAnnulation() {
+    this.updateProduct = this.categoryProduct[0];
+    this.updateProduct.storeName = this.store.storeName;
+    this.router.navigate(['/admin/overview/products/store/' + this.updateProduct.storeName]);
+  }
+
+  submitDetails() {
+    this.updateProduct = this.categoryProduct[0];
+    this.updateProduct.storeName = this.store.storeName;
+    this.ikeaservice.updateProduct(this.updateProduct.storeName, this.updateProduct.articleNumber, this.updateProduct).subscribe();
+    this.router.navigate(['/admin/overview/products/store/' + this.updateProduct.storeName]);
+  }
 }

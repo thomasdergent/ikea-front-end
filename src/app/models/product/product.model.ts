@@ -1,6 +1,7 @@
 export class Product {
     id: string;
     storeName: string;
+    name: string;
     category: string;
     articleNumber: string;
     delivery: boolean;
@@ -12,6 +13,7 @@ export class Product {
     size: string;
     constructor(
         storeName: string,
+        name: string,
         category: string,
         articleNumber: string,
         delivery: boolean,
@@ -24,6 +26,7 @@ export class Product {
         id: string
     ) {
         this.storeName = storeName;
+        this.name = name;
         this.category = category;
         this.articleNumber = articleNumber;
         this.delivery = delivery;

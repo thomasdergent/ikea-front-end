@@ -31,16 +31,16 @@ export class IkeaService {
     return this.http.get<Store[]>("http://localhost:8050/stores"); 
   }
 
-  addProduct(): Observable<Product>{
-    return this.http.get<Product>("http://localhost:8050/product"); 
+  addProduct(product: Product): Observable<Product>{
+    return this.http.post<Product>("http://localhost:8050/product", product); 
   }
 
-  updateProduct(storeName: string, articleNumber: string): Observable<Product>{
-    return this.http.get<Product>("http://localhost:8050/store/" + storeName + "/article/" + articleNumber); 
+  updateProduct(storeName: string, articleNumber: string, product: Product): Observable<Product>{
+    return this.http.put<Product>("http://localhost:8050/store/" + storeName + "/article/" + articleNumber, product); 
   }
 
   deleteProduct(storeName: string, articleNumber: string): Observable<Product>{
-    return this.http.get<Product>("http://localhost:8050/store/" + storeName + "/article/" + articleNumber); 
+    return this.http.delete<Product>("http://localhost:8050/store/" + storeName + "/article/" + articleNumber); 
   }
 
 }

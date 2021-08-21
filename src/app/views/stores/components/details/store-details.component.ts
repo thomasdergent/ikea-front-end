@@ -11,7 +11,7 @@ import { IkeaService } from 'src/app/services/ikea-service/ikea-service.service'
 export class StoreDetailsComponent implements OnInit {
 
   store: Store;
-  categoryProducts: Product[];
+  categoryProduct : Product[];
   spinner: Boolean = true;
   
   constructor(
@@ -31,7 +31,7 @@ export class StoreDetailsComponent implements OnInit {
     this.ikeaservice.getProductByStoreNameAndArticleNumber(storeName, articleNumber).subscribe(
       result => {
         this.store = result;
-        this.categoryProducts = result.categoryProducts;
+        this.categoryProduct = result.categoryProducts;
 
         if (result){
           this.spinner = false;

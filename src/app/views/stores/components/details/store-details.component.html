@@ -3,34 +3,37 @@
 
     <div *ngIf="spinner == false">
 
-      <div *ngFor="let product of categoryProducts">
+      <div *ngFor="let product of categoryProduct">
 
         <h1>
           <mat-divider></mat-divider>
-          {{store.storeName}} <mat-icon color="accent" class="icon-display">arrow_right</mat-icon>
-          <span>{{product.name}}</span>
+          {{store.storeName}} 
+          <mat-icon color="accent" class="icon-display">arrow_right</mat-icon> 
+          <span>{{product.category}}</span>
+           <mat-icon color="accent" class="icon-display">arrow_right</mat-icon>
+          {{product.name}}
           <mat-divider></mat-divider>
         </h1>
 
 
-        <div class="row">
+        <div class="row ">
           <div class="col-5 justify-content-center">
             <img
               src="https://www.ikea.com/be/nl/images/products/lagkapten-alex-bureau-wit-gelazuurd-eiken-wit__0976179_pe813072_s5.jpg?f=xl"
               alt="">
           </div>
-          <div class="col-5">
+          <div class="col-7">
             <h2>
              €{{product.price}}
             </h2>
+            <p class="font-weight-light">
+              Artikelnummer: {{product.articleNumber}}
+            </p>
             <p class="font-weight-bold" *ngIf="product.delivery">
              <span class="price">Beschikbaar voor levering</span>
             </p>
             <p class="font-weight-bold" *ngIf="!product.delivery">
-              Beschikbaar voor levering
-            </p>
-            <p class="font-weight-light">
-              Artikelnummer: {{product.articleNumber}}
+              <span class="notAvailable">Niet beschikbaar voor levering</span>
             </p>
             <mat-divider></mat-divider>
             <p class="font-weight-bold">

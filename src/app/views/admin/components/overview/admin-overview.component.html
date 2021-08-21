@@ -18,26 +18,26 @@
         </mat-expansion-panel-header>
         <mat-divider></mat-divider>
         <div class="row">
-        <div class="col-12 col-sm-6 col-md-4 col-xl-3">
-        <mat-form-field appearance="fill">
-          <mat-label>Categorieën</mat-label>
-          <mat-select [(value)]="selectedCategory" (selectionChange)="submitCategory($event)">
-              <mat-option value="{{store.storeName}}">
+          <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+            <mat-form-field appearance="fill">
+              <mat-label>Categorieën</mat-label>
+              <mat-select [(value)]="selectedCategory" (selectionChange)="submitCategory($event)">
+                <mat-option value="{{store.storeName}}">
                   Alle
-              </mat-option>
-              <mat-option *ngFor="let category of categories" value="{{category}}">
+                </mat-option>
+                <mat-option *ngFor="let category of categories" value="{{category}}">
                   {{category}}
-              </mat-option>
-          </mat-select>
-      </mat-form-field>
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+            <mat-form-field class="filter-full-width" appearance="fill">
+              <mat-label>Zoeken</mat-label>
+              <input matInput (keyup)="applyFilter($event)" #input>
+            </mat-form-field>
+          </div>
         </div>
-      <div class="col-12 col-sm-6 col-md-4 col-xl-3">
-        <mat-form-field class="filter-full-width" appearance="fill">
-          <mat-label>Zoeken</mat-label>
-          <input matInput (keyup)="applyFilter($event)" #input>
-        </mat-form-field>
-      </div>
-    </div>
       </mat-expansion-panel>
     </mat-accordion>
 
@@ -78,9 +78,8 @@
           </mat-header-cell>
           <mat-cell class="mat-cell-right" *matCellDef="let product">
             <a routerLink="/admin/details/store/{{store.storeName}}/article/{{product.articleNumber}}">
-              <mat-icon class="detailIcon" data-toggle="modal">visibility</mat-icon>
+              <mat-icon class="editIcon" data-toggle="modal">create</mat-icon>
             </a>
-            <mat-icon class="editIcon" data-toggle="modal">create</mat-icon>
             <mat-icon class="deleteIcon" data-toggle="modal">remove_circle</mat-icon>
           </mat-cell>
         </ng-container>
