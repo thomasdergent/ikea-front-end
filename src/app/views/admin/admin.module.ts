@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AdminDetailsComponent } from './components/details/admin-details.component';
 import { AdminOverviewComponent } from './components/overview/admin-overview.component';
+import { AdminInputComponent } from './components/input/admin-input.component';
 
 
 
@@ -15,6 +16,7 @@ import { AdminOverviewComponent } from './components/overview/admin-overview.com
     AdminPageComponent,
     AdminOverviewComponent,
     AdminDetailsComponent,
+    AdminInputComponent,
   ],
   imports: [
     SharedModule,

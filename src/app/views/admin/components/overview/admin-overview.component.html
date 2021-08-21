@@ -74,10 +74,12 @@
         <!-- Symbol Column -->
         <ng-container matColumnDef="acties">
           <mat-header-cell class="mat-cell-right" *matHeaderCellDef>
-            <mat-icon class="addIcon" data-toggle="modal">add_circle</mat-icon>
+            <a routerLink="/admin/add/store/{{store.storeName}}/product">
+              <mat-icon class="addIcon" data-toggle="modal">add_circle</mat-icon>
+            </a>
           </mat-header-cell>
           <mat-cell class="mat-cell-right" *matCellDef="let product">
-            <a routerLink="/admin/details/store/{{store.storeName}}/article/{{product.articleNumber}}">
+            <a routerLink="/admin/edit/store/{{store.storeName}}/article/{{product.articleNumber}}">
               <mat-icon class="editIcon" data-toggle="modal">create</mat-icon>
             </a>
             <mat-icon class="deleteIcon" data-toggle="modal">remove_circle</mat-icon>

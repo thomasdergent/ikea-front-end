@@ -11,13 +11,9 @@ import { IkeaService } from 'src/app/services/ikea-service/ikea-service.service'
 export class AdminDetailsComponent implements OnInit {
   store: Store;
   categoryProduct: Product[];
-  tempCategories: Product[];
   updateProduct: Product;
   spinner: Boolean = true;
-  categories: any;
-  selectedCategory = 'domain';
-  delivery: Boolean;
-  test: string[] = [];
+  categories: string[] = [];
 
   constructor(
     private router: Router,
@@ -51,8 +47,8 @@ export class AdminDetailsComponent implements OnInit {
   }
 
   loadCategories() {
-    this.test.push("Zetels", "Bureaus", "Stoelen", "Bedden", "Fauteuils", "Kasten", "Mediameubels");
-    this.test.sort();
+    this.categories.push("Zetels", "Bureaus", "Stoelen", "Bedden", "Fauteuils", "Kasten", "Mediameubels");
+    this.categories.sort();
   }
 
   submitAnnulation() {
