@@ -18,11 +18,15 @@
 <mat-sidenav-container>
     <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z10">
 
+        <a routerLink="/store/home">
+            <img class="avatar mat-elevation-z8" src="../../../../assets/picutres/ika.jpg" />
+        </a>
 
         <mat-divider></mat-divider>
         <button mat-button class="menu-button" routerLink="/store/home">
             <span>Home</span>
         </button>
+        <mat-divider></mat-divider>
         <div class="test" *ngFor="let store of stores">
             <button mat-button class="menu-button" routerLink="/store/{{store.storeName}}/products">
                 <span> {{store.storeName}}</span>

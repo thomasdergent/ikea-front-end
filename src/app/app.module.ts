@@ -14,6 +14,7 @@ import { AdminOverviewComponent } from './views/admin-overview/admin-overview/ad
 import { AdminDetailsComponent } from './views/admin-details/admin-details/admin-details.component';
 import { AdminModule } from './views/admin/admin.module';
 import { StoreModule } from './views/stores/store.module';
+import { LoginComponent } from './views/login/login.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { StoreModule } from './views/stores/store.module';
     AdminHomeComponent,
     AdminOverviewComponent,
     AdminDetailsComponent,
+    LoginComponent,
   ],
   imports: [
     AppRoutingModule,
