@@ -23,11 +23,11 @@ export class AdminDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadCategories();
-    this.loadArticle();
+    this.loadProduct();
 
   }
 
-  loadArticle() {
+  loadProduct() {
     const storeName = this.route.snapshot.paramMap.get('storeName');
     const articleNumber = this.route.snapshot.paramMap.get('articleNumber');
 
