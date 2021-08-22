@@ -6,10 +6,10 @@ import { Store } from 'src/app/models/store/store.model';
 import { IkeaService } from 'src/app/services/ikea-service/ikea-service.service';
 
 @Component({
-  templateUrl: './store-home.component.html',
-  styleUrls: ['./store-home.component.scss']
+  templateUrl: './admin-home.component.html',
+  styleUrls: ['./admin-home.component.scss']
 })
-export class StoreHomeComponent implements OnInit {
+export class AdminHomeComponent implements OnInit {
 
   test: Store;
   stores: Store[];
@@ -27,12 +27,13 @@ export class StoreHomeComponent implements OnInit {
     this.ikeaservice.getStores().subscribe(
       result => {
         this.stores = result;
+        console.log(result);
         this.spinner = false;
       }
     )
   }
 
   submitStore(event: any) {
-    this.router.navigate(['/store/' + event.value + '/products']);
+    this.router.navigate(['/admin/overview/products/store/' + event.value]);
   }
 }

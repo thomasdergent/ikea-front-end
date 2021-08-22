@@ -37,7 +37,7 @@ export class AdminInputComponent implements OnInit {
     this.ikeaservice.getStores().subscribe(
       result => {
         this.stores = result;
-        console.log(this.stores);
+        this.spinner = false;
       }
     )
   }
@@ -52,7 +52,7 @@ export class AdminInputComponent implements OnInit {
   }
 
   submitDetails() {
-    console.log(this.addProduct);
+    this.addProduct.storeName = this.store;
     this.ikeaservice.addProduct(this.addProduct).subscribe();
     this.router.navigate(['/admin/overview/products/store/' + this.store]);
   }

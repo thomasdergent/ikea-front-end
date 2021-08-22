@@ -1,8 +1,8 @@
+<div *ngIf="spinner">
+  <mat-spinner diameter="130"></mat-spinner>
+</div>
 
-
-
-
-<div class="profile-card">
+<div  *ngIf="!spinner" class="profile-card">
     <mat-card class="profile-mat-card mat-elevation-z6">
       <mat-card-title>
         Welkom bij meubelcatalogus IKEA België!

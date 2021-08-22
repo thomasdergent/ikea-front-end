@@ -1,4 +1,8 @@
-<div class="content detail">
+<div *ngIf="spinner">
+  <mat-spinner diameter="130"></mat-spinner>
+</div>
+
+<div  *ngIf="!spinner" class="content detail">
   <div id="main">
 
     <div *ngIf="spinner == false">

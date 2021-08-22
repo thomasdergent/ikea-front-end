@@ -14,9 +14,9 @@ const routes: Routes = [
   },
   { path: 'login', component: LoginComponent},
   //errors
-  { path: '', redirectTo: "store", pathMatch:'full'},
+  { path: '', redirectTo: "/store/home", pathMatch:'full'},
   //wrong url
-  { path: "**",redirectTo:"store"},
+  { path: "**",redirectTo:"/store/home"},
 ];
 
 @NgModule({

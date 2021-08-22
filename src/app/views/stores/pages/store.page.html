@@ -13,13 +13,23 @@
 
     <div class="toolbar-spacer"></div>
 
+    <a routerLink="/admin/home">
+        <mat-icon *ngIf="loginDisplay" style="margin-right: 10px;" class="loginIcon" data-toggle="modal">account_circle</mat-icon>
+      </a>
+
+    <button mat-raised-button *ngIf="!loginDisplay" color="accent" (click)="login()">
+        Aanmelden
+    </button>
+    <button mat-raised-button *ngIf="loginDisplay" color="accent" (click)="logout()">
+        Afmelden
+    </button>
 </mat-toolbar>
 
 <mat-sidenav-container>
     <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z10">
 
         <a routerLink="/store/home">
-            <img class="avatar mat-elevation-z8" src="../../../../assets/picutres/ika.jpg" />
+            <img class="avatar mat-elevation-z8" src="../../../../assets/picutres/ikea.jpg" />
         </a>
 
         <mat-divider></mat-divider>

@@ -49,13 +49,11 @@ export class AdminOverviewComponent implements OnInit {
           this.store = result;
           this.categoryProducts = result.categoryProducts;
 
-          this.dataSource = new MatTableDataSource<Product>(result.categoryProducts);
-          console.log(this.dataSource);
-
           this.categories = this.categoryProducts.map(item => item.category)
             .filter((value, index, self) => self.indexOf(value) === index)
 
           if (result) {
+            this.dataSource = new MatTableDataSource<Product>(result.categoryProducts);
             this.spinner = false;
           }
         }

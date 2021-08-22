@@ -9,6 +9,7 @@ import { AdminDetailsComponent } from './components/details/admin-details.compon
 import { AdminOverviewComponent } from './components/overview/admin-overview.component';
 import { AdminInputComponent } from './components/input/admin-input.component';
 import { AdminDeleteComponent } from './components/delete/admin-delete.component';
+import { AdminHomeComponent } from './components/home/admin-home.component';
 
 
 
@@ -19,6 +20,7 @@ import { AdminDeleteComponent } from './components/delete/admin-delete.component
     AdminDetailsComponent,
     AdminInputComponent,
     AdminDeleteComponent,
+    AdminHomeComponent,
   ],
   imports: [
     SharedModule,

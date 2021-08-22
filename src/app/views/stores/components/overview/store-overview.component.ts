@@ -25,30 +25,30 @@ export class StoreOverviewComponent implements OnInit {
     private route: ActivatedRoute,
     private ikeaservice: IkeaService,
   ) {
-    this.loadArticle();
+    this.loadProducts();
   }
 
   ngOnInit(): void {
   }
 
-  loadArticle() {
+  loadProducts() {
     this.route.params.subscribe(params => {
 
       const storeName = params['storeName'];
-    this.ikeaservice.getProductsByStoreName(storeName).subscribe(
-      result => {
-        this.store = result;
-        this.categoryProducts = result.categoryProducts;
+      this.ikeaservice.getProductsByStoreName(storeName).subscribe(
+        result => {
+          this.store = result;
+          this.categoryProducts = result.categoryProducts;
 
-        this.categories = this.categoryProducts.map(item => item.category)
-          .filter((value, index, self) => self.indexOf(value) === index)
+          this.categories = this.categoryProducts.map(item => item.category)
+            .filter((value, index, self) => self.indexOf(value) === index)
 
-        if (result) {
-          this.spinner = false;
+          if (result) {
+            this.spinner = false;
+          }
         }
-      }
-    )
-  });
+      )
+    });
   }
 
   submitCategory(event: any) {
