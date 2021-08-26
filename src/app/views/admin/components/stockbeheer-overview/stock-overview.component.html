@@ -10,6 +10,7 @@
             <mat-divider></mat-divider>
             {{product.name}}
             <mat-icon color="accent" class="icon-display">arrow_right</mat-icon> <span>Stock</span>
+        
             <mat-divider></mat-divider>
         </h1>
 
@@ -68,7 +69,14 @@
                 <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
             </mat-table>
+        </div>
+        <div class="row">
+
+            <div class="col-12" style="text-align:right;">
+                <button type="submit" mat-raised-button class="addButton" routerLink="/admin/overview/products">Klaar</button>
+            </div>
 
         </div>
+
     </div>
 </div>
