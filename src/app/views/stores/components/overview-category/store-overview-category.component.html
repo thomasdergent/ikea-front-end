@@ -7,39 +7,10 @@
 
     <h1>
       <mat-divider></mat-divider>
-      Producten
+      {{category}}
       <mat-icon color="accent" class="icon-display">arrow_right</mat-icon> <span>Overzicht</span>
       <mat-divider></mat-divider>
     </h1>
-
-    <mat-accordion>
-      <mat-expansion-panel>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            <h5>
-              Filters
-            </h5>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-        <mat-divider></mat-divider>
-        <div class="row">
-          <div class="col-12 col-sm-6 col-md-4 col-xl-3">
-            <mat-form-field appearance="fill">
-              <mat-label>Categorieën</mat-label>
-              <mat-select [(value)]="selectedCategory" (selectionChange)="submitCategory($event)">
-                <mat-option value="alle">
-                  Alle
-                </mat-option>
-                <mat-option *ngFor="let category of categories" value="{{category}}">
-                  {{category}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-        </div>
-      </mat-expansion-panel>
-    </mat-accordion>
-
 
     <div class="row product">
       <div *ngFor="let product of products">

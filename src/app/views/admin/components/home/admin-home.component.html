@@ -4,17 +4,12 @@
       IKEA België beheer
     </mat-card-title>
     <mat-card-subtitle>
-      Kies hier een vestiging
+      Beheer producten en stock
     </mat-card-subtitle>
     <mat-card-content>
-      <mat-form-field appearance="fill">
-          <mat-label>Winkels</mat-label>
-          <mat-select (selectionChange)="submitStore($event)">
-              <mat-option *ngFor="let store of stores" value="{{store.storeName}}">
-                  {{store.storeName}}
-              </mat-option>
-          </mat-select>
-      </mat-form-field>
+      <p>
+        <button type="submit" mat-raised-button color="accent" routerLink="/admin/overview/products">Beheer</button>
+       </p>     
     </mat-card-content>
   </mat-card>
 </div>

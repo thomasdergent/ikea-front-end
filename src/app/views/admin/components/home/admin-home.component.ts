@@ -24,13 +24,6 @@ export class AdminHomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.ikeaservice.getStores().subscribe(
-      result => {
-        this.stores = result;
-        console.log(result);
-        this.spinner = false;
-      }
-    )
   }
 
   submitStore(event: any) {

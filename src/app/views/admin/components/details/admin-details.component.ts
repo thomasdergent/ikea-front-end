@@ -9,8 +9,8 @@ import { IkeaService } from 'src/app/services/ikea-service/ikea-service.service'
   styleUrls: ['./admin-details.component.scss']
 })
 export class AdminDetailsComponent implements OnInit {
-  store: Store;
-  categoryProduct: Product[];
+  stores: Store[];
+  product: Product;
   updateProduct: Product;
   spinner: Boolean = true;
   categories: string[] = [];
@@ -24,26 +24,23 @@ export class AdminDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.loadCategories();
     this.loadProduct();
-
   }
 
   loadProduct() {
-    const storeName = this.route.snapshot.paramMap.get('storeName');
-    const articleNumber = this.route.snapshot.paramMap.get('articleNumber');
+    this.route.params.subscribe(params => {
+      const articleNumber = this.route.snapshot.paramMap.get('articleNumber');
 
-    this.ikeaservice.getProductByStoreNameAndArticleNumber(storeName, articleNumber).subscribe(
-      result => {
-        this.store = result;
-        this.categoryProduct = result.categoryProducts;
-        console.log(result);
-        console.log(result.categoryProducts);
-        console.log(this.categories);
+      this.ikeaservice.getProductByArticleNumber(articleNumber).subscribe(
+        result => {
+          this.product = result;
+          this.stores = result.storeStocks;
 
-        if (result) {
-          this.spinner = false;
+          if (result) {
+            this.spinner = false;
+          }
         }
-      }
-    )
+      )
+    });
   }
 
   loadCategories() {
@@ -52,15 +49,12 @@ export class AdminDetailsComponent implements OnInit {
   }
 
   submitAnnulation() {
-    this.updateProduct = this.categoryProduct[0];
-    this.updateProduct.storeName = this.store.storeName;
-    this.router.navigate(['/admin/overview/products/store/' + this.updateProduct.storeName]);
+    this.router.navigate(['/admin/overview/products']);
   }
 
   submitDetails() {
-    this.updateProduct = this.categoryProduct[0];
-    this.updateProduct.storeName = this.store.storeName;
-    this.ikeaservice.updateProduct(this.updateProduct.storeName, this.updateProduct.articleNumber, this.updateProduct).subscribe();
-    this.router.navigate(['/admin/overview/products/store/' + this.updateProduct.storeName]);
+    this.updateProduct = this.product;
+    this.ikeaservice.updateProduct(this.updateProduct.articleNumber, this.updateProduct).subscribe();
+    this.router.navigate(['/admin/overview/products']);
   }
 }

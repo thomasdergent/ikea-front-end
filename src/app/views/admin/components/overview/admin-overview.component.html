@@ -8,7 +8,8 @@
 
     <h1>
       <mat-divider></mat-divider>
-      {{store.storeName}} <mat-icon color="accent" class="icon-display">arrow_right</mat-icon> <span>Overzicht</span>
+      Producten
+      <mat-icon color="accent" class="icon-display">arrow_right</mat-icon> <span>Overzicht</span>
       <mat-divider></mat-divider>
     </h1>
 
@@ -27,7 +28,7 @@
             <mat-form-field appearance="fill">
               <mat-label>Categorieën</mat-label>
               <mat-select [(value)]="selectedCategory" (selectionChange)="submitCategory($event)">
-                <mat-option value="{{store.storeName}}">
+                <mat-option value="alle">
                   Alle
                 </mat-option>
                 <mat-option *ngFor="let category of categories" value="{{category}}">
@@ -72,22 +73,27 @@
         </ng-container>
 
         <ng-container matColumnDef="stock">
-          <mat-header-cell *matHeaderCellDef> Stock </mat-header-cell>
-          <mat-cell *matCellDef="let product"> {{product.stock}} </mat-cell>
+          <mat-header-cell *matHeaderCellDef> Stockbeheer </mat-header-cell>
+          <mat-cell *matCellDef="let product">
+            <a routerLink="/admin/{{product.articleNumber}}/overview/stock">
+              <mat-icon class="editIcon" data-toggle="modal">rule_folder</mat-icon>
+            </a>
+          </mat-cell>
         </ng-container>
 
         <!-- Symbol Column -->
         <ng-container matColumnDef="acties">
           <mat-header-cell class="mat-cell-right" *matHeaderCellDef>
-            <a routerLink="/admin/add/store/{{store.storeName}}/product">
+            <a routerLink="/admin/add/product">
               <mat-icon class="addIcon" data-toggle="modal">add_circle</mat-icon>
             </a>
           </mat-header-cell>
           <mat-cell class="mat-cell-right" *matCellDef="let product">
-            <a routerLink="/admin/edit/store/{{store.storeName}}/article/{{product.articleNumber}}">
+            <a routerLink="/admin/edit/product/{{product.articleNumber}}">
               <mat-icon class="editIcon" data-toggle="modal">create</mat-icon>
             </a>
-            <mat-icon class="deleteIcon" data-toggle="modal" (click)="deleteDialog(store.storeName, product.articleNumber, product.name)">remove_circle</mat-icon>
+            <mat-icon class="deleteIcon" data-toggle="modal"
+              (click)="deleteDialog(product.articleNumber, product.name)">remove_circle</mat-icon>
           </mat-cell>
         </ng-container>
 

@@ -11,7 +11,7 @@ import { IkeaService } from 'src/app/services/ikea-service/ikea-service.service'
 export class AdminInputComponent implements OnInit {
   store: string;
   stores: Store[];
-  addProduct: Product = new Product("", "", "", "", false, "", "", "", 0, 0, "", "");
+  addProduct: Product = new Product("", "", "", "", "", false, "", "", "", 0, "");
   spinner: Boolean = true;
   categories: string[] = [];
 
@@ -23,37 +23,20 @@ export class AdminInputComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadCategories();
-    this.loadStores();
-    this.getStore();
-  }
-
-  getStore() {
-    const storeName = this.route.snapshot.paramMap.get('storeName');
-
-    this.store = storeName;
-  }
-
-  loadStores() {
-    this.ikeaservice.getStores().subscribe(
-      result => {
-        this.stores = result;
-        this.spinner = false;
-      }
-    )
   }
 
   loadCategories() {
     this.categories.push("Zetels", "Bureaus", "Stoelen", "Bedden", "Fauteuils", "Kasten", "Mediameubels");
     this.categories.sort();
+    this.spinner = false;
   }
 
   submitAnnulation() {
-    this.router.navigate(['/admin/overview/products/store/' + this.store]);
+    this.router.navigate(['/admin/overview/products']);
   }
 
   submitDetails() {
-    this.addProduct.storeName = this.store;
     this.ikeaservice.addProduct(this.addProduct).subscribe();
-    this.router.navigate(['/admin/overview/products/store/' + this.store]);
+    this.router.navigate(['/admin/overview/products']);
   }
 }

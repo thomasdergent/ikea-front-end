@@ -1,0 +1,74 @@
+<div *ngIf="spinner">
+    <mat-spinner diameter="130"></mat-spinner>
+</div>
+
+
+<div *ngIf="!spinner" class="content">
+    <div id="main">
+
+        <h1>
+            <mat-divider></mat-divider>
+            {{product.name}}
+            <mat-icon color="accent" class="icon-display">arrow_right</mat-icon> <span>Stock</span>
+            <mat-divider></mat-divider>
+        </h1>
+
+        <mat-accordion>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        <h5>
+                            Filters
+                        </h5>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <mat-divider></mat-divider>
+                <div class="row">
+                    <div class="col-12 col-sm-6 col-md-4 col-xl-3">
+                        <mat-form-field class="filter-full-width" appearance="fill">
+                            <mat-label>Zoeken</mat-label>
+                            <input matInput (keyup)="applyFilter($event)" #input>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+
+
+
+        <div class="table-wrapper mat-elevation-z6">
+            <mat-table [dataSource]="dataSource">
+
+                <ng-container matColumnDef="storeName">
+                    <mat-header-cell *matHeaderCellDef> Winkel </mat-header-cell>
+                    <mat-cell *matCellDef="let store"> {{store.storeName}} </mat-cell>
+                </ng-container>
+
+
+                <ng-container matColumnDef="stock">
+                    <mat-header-cell *matHeaderCellDef> Stock </mat-header-cell>
+                    <mat-cell *matCellDef="let store"> {{store.stock}} </mat-cell>
+                </ng-container>
+
+                <!-- Symbol Column -->
+                <ng-container matColumnDef="acties">
+                    <mat-header-cell class="mat-cell-right" *matHeaderCellDef>
+  
+                            <mat-icon class="addIcon" data-toggle="modal" (click)="addDialog(product.articleNumber, product.name)">add_circle</mat-icon>
+                     
+                    </mat-header-cell>
+                    <mat-cell class="mat-cell-right" *matCellDef="let store">
+                            <mat-icon class="editIcon" data-toggle="modal" (click)="updateDialog(product.articleNumber, product.name, store.storeName)">create</mat-icon>
+                        <mat-icon class="deleteIcon" data-toggle="modal"
+                            (click)="deleteDialog(product.articleNumber, product.name, store.storeName)">remove_circle</mat-icon>
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+            </mat-table>
+
+        </div>
+    </div>
+</div>

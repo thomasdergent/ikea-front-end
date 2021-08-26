@@ -1,126 +1,127 @@
 <div *ngIf="spinner">
     <mat-spinner diameter="130"></mat-spinner>
-  </div>  
+</div>
 
 <div *ngIf="!spinner" class="content">
     <div id="main">
 
-            <h1>
-                <mat-divider></mat-divider>
-                Product <mat-icon color="accent" class="icon-display">arrow_right</mat-icon>
-              <span>Toevoegen</span>
-                <mat-divider></mat-divider>
-            </h1>
+        <h1>
+            <mat-divider></mat-divider>
+            Product <mat-icon color="accent" class="icon-display">arrow_right</mat-icon>
+            <span>Toevoegen</span>
+            <mat-divider></mat-divider>
+        </h1>
 
 
-            <form class="filter-form detailsForm mat-elevation-z6" #productForm="ngForm" >
+        <form class="filter-form detailsForm mat-elevation-z6" #productForm="ngForm">
 
-                <div class="row">
-                    <div class="col-12 col-sm-6 col-md-4 col-xl-3 ">
-                        <mat-form-field class="example-full-width " appearance="fill">
-                            <mat-label>Winkel</mat-label>
-                            <input matInput type="text" name="store" [(ngModel)]="this.store" disabled>
-                        </mat-form-field>
-                    </div>
-           
-
-                    <div class="col-12 col-sm-6 col-md-4 col-xl-3 ">
-                        <mat-form-field class="example-full-width " appearance="fill">
-                            <mat-label>Artikelnummer</mat-label>
-                            <input matInput type="text" name="articleNumber" [(ngModel)]="addProduct.articleNumber" required>
-                        </mat-form-field>
-                    </div>
-                </div>
-
-                <div class="row ">
-
-                    <div class="col-12 col-sm-6 col-md-4 col-xl-3 ">
-                        <mat-form-field class="example-full-width " appearance="fill">
-                            <mat-label>Naam</mat-label>
-                            <input matInput type="text" name="name" [(ngModel)]="addProduct.name" required>
-                        </mat-form-field>
-                    </div>
-
-                    <div class="col-12 col-sm-6 col-md-4 col-xl-3 ">
-                        <mat-form-field class="example-full-width " appearance="fill">
-                            <mat-label>Categorieën</mat-label>
-                            <mat-select [(ngModel)]="addProduct.category" name="cateogry" required>
-                                <mat-option *ngFor="let category of categories" value="{{category}}">
-                                    {{category}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-
-                    <div class="col-12 col-sm-6 col-md-4 col-xl-3 ">
-                        <mat-form-field class="example-full-width " appearance="fill">
-                            <mat-label>Afmetingen</mat-label>
-                            <input matInput type="text" name="size" [(ngModel)]="addProduct.size" required>
-                        </mat-form-field>
-                    </div>
-
-                </div>
-
-                <div class="row">
-
-                    <mat-form-field class="example-full-width col-12 col-md-9" appearance="fill">
-                        <mat-label>Materiaal</mat-label>
-                        <textarea matInput type="text" name="material" [(ngModel)]="addProduct.material"
-                            required></textarea>
+            <div class="row">
+                <div class="col-12 col-sm-6 col-md-4 col-xl-3 ">
+                    <mat-form-field class="example-full-width " appearance="fill">
+                        <mat-label>Artikelnummer</mat-label>
+                        <input matInput type="text" name="articleNumber" [(ngModel)]="addProduct.articleNumber"
+                            required>
                     </mat-form-field>
-
                 </div>
 
-                <div class="row ">
-
-                    <mat-form-field class="example-full-width col-12 col-md-9" appearance="fill">
-                        <mat-label>Duurzaamheid & milieu</mat-label>
-                        <textarea matInput type="text" name="environment" [(ngModel)]="addProduct.environment"
-                            required></textarea>
+                <div class="col-12 col-sm-6 col-md-4 col-xl-3 ">
+                    <mat-form-field class="example-full-width " appearance="fill">
+                        <mat-label>Naam</mat-label>
+                        <input matInput type="text" name="name" [(ngModel)]="addProduct.name" required>
                     </mat-form-field>
-
                 </div>
 
-                <div class="row ">
+                <div class="col-12 col-sm-6 col-md-4 col-xl-3 ">
+                    <mat-form-field class="example-full-width " appearance="fill">
+                        <mat-label>Categorieën</mat-label>
+                        <mat-select [(ngModel)]="addProduct.category" name="cateogry" required>
+                            <mat-option *ngFor="let category of categories" value="{{category}}">
+                                {{category}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
 
-                    <div class="col-12 col-sm-6 col-md-4 col-xl-3 ">
-                        <mat-form-field class="example-full-width " appearance="fill">
-                            <mat-label>Prijs</mat-label>
-                            <input matInput type="number" name="price" [(ngModel)]="addProduct.price" required>
-                        </mat-form-field>
-                    </div>
-
-                    <div class="col-12 col-sm-6 col-md-4 col-xl-3 ">
-                        <mat-form-field class="example-full-width " appearance="fill">
-                            <mat-label>Stock</mat-label>
-                            <input matInput type="number" name="stock" [(ngModel)]="addProduct.stock" required>
-                        </mat-form-field>
-                    </div>
-
-                    <div class="col-12 col-sm-6 col-md-4 col-xl-3 ">
-                        <mat-form-field class="example-full-width " appearance="fill">
-                            <mat-label>Levering</mat-label>
-                            <mat-select [(ngModel)]="addProduct.delivery" name="delivery" required>
-                                <mat-option [value]="true">
-                                    Ja
-                                </mat-option>
-                                <mat-option [value]="false">
-                                    Nee
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-
+                <div class="col-12 col-sm-6 col-md-4 col-xl-3 ">
+                    <mat-form-field class="example-full-width " appearance="fill">
+                        <mat-label>Afmetingen</mat-label>
+                        <input matInput type="text" name="size" [(ngModel)]="addProduct.size" required>
+                    </mat-form-field>
                 </div>
 
-                <div class="row">
-
-                    <div class="col-12 col-md-9" style="text-align:right;">
-                        <button type="submit" mat-raised-button class="editButton" (click)="submitAnnulation()">Annuleer</button>
-                        <button type="submit" [disabled]="!productForm.valid" mat-raised-button class="addButton" (click)="submitDetails()">Bevestig</button>
-                    </div>
-
+                <div class="col-12 col-sm-6 col-md-4 col-xl-3 ">
+                    <mat-form-field class="example-full-width " appearance="fill">
+                        <mat-label>Prijs</mat-label>
+                        <input matInput type="number" name="price" [(ngModel)]="addProduct.price" required>
+                    </mat-form-field>
                 </div>
-            </form>
-        </div>
+
+                <div class="col-12 col-sm-6 col-md-4 col-xl-3 ">
+                    <mat-form-field class="example-full-width " appearance="fill">
+                        <mat-label>Levering</mat-label>
+                        <mat-select [(ngModel)]="addProduct.delivery" name="delivery" required>
+                            <mat-option [value]="true">
+                                Ja
+                            </mat-option>
+                            <mat-option [value]="false">
+                                Nee
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+
+                <mat-form-field class="example-full-width col-12" appearance="fill">
+                    <mat-label>Materiaal</mat-label>
+                    <textarea matInput type="text" name="material" [(ngModel)]="addProduct.material"
+                        required></textarea>
+                </mat-form-field>
+
+            </div>
+
+            <div class="row ">
+
+                <mat-form-field class="example-full-width col-12" appearance="fill">
+                    <mat-label>Omschrijving</mat-label>
+                    <textarea matInput type="text" name="description" [(ngModel)]="addProduct.description"
+                        required></textarea>
+                </mat-form-field>
+
+            </div>
+
+            <div class="row ">
+
+                <mat-form-field class="example-full-width col-12" appearance="fill">
+                    <mat-label>Duurzaamheid & milieu</mat-label>
+                    <textarea matInput type="text" name="environment" [(ngModel)]="addProduct.environment"
+                        required></textarea>
+                </mat-form-field>
+
+            </div>
+
+            <div class="row ">
+
+                <mat-form-field class="example-full-width col-12" appearance="fill">
+                    <mat-label>Afbeelding Url</mat-label>
+                    <textarea matInput type="text" name="image" [(ngModel)]="addProduct.image" required></textarea>
+                </mat-form-field>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-12" style="text-align:right;">
+                    <button type="submit" mat-raised-button class="editButton"
+                        (click)="submitAnnulation()">Annuleer</button>
+                    <button type="submit" [disabled]="!productForm.valid" mat-raised-button class="addButton"
+                        (click)="submitDetails()">Bevestig</button>
+                </div>
+
+            </div>
+        </form>
     </div>
+</div>

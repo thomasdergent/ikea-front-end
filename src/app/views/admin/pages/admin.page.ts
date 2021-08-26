@@ -72,14 +72,6 @@ export class AdminPageComponent implements OnInit {
         this.setLoginDisplay();
         this.checkAndSetActiveAccount();
       })
-
-
-    this.ikeaservice.getStores().subscribe(
-      result => {
-        this.stores = result;
-        console.log(result);
-      }
-    )
   }
 
   setLoginDisplay() {

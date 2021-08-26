@@ -15,32 +15,43 @@ export class IkeaService {
 
   }
 
-  getProductByStoreNameAndArticleNumber(storeName: string, articleNumber: string): Observable<Store>{
-    return this.http.get<Store>("http://localhost:8050/store/" + storeName + "/article/" + articleNumber); 
+  getProductByArticleNumber(articleNumber: string): Observable<Product>{
+    return this.http.get<Product>("http://localhost:8050/product/" + articleNumber); 
   }
 
-  getProductsByStoreName(storeName: string): Observable<Store>{
-    return this.http.get<Store>("http://localhost:8050/products/store/" + storeName); 
+  getProducts(): Observable<Product[]>{
+    return this.http.get<Product[]>("http://localhost:8050/products"); 
   }
 
-  getProductsByStoreNameAndCategory(storeName: string, category: string): Observable<Store>{
-    return this.http.get<Store>("http://localhost:8050/store/" + storeName + "/category/" + category); 
+  getProductsByCategory(category: string): Observable<Product[]>{
+    return this.http.get<Product[]>("http://localhost:8050/products/" + category); 
   }
 
-  getStores(): Observable<Store[]>{
-    return this.http.get<Store[]>("http://localhost:8050/stores"); 
+  getStoreByArticleNumberAndStoreName(articleNumber: string, storeName: string): Observable<Store>{
+    return this.http.get<Store>("http://localhost:8050/product/" + articleNumber + "/store/" + storeName); 
   }
 
   addProduct(product: Product): Observable<Product>{
     return this.http.post<Product>("http://localhost:8050/product", product); 
   }
 
-  updateProduct(storeName: string, articleNumber: string, product: Product): Observable<Product>{
-    return this.http.put<Product>("http://localhost:8050/store/" + storeName + "/article/" + articleNumber, product); 
+  updateProduct(articleNumber: string, product: Product): Observable<Product>{
+    return this.http.put<Product>("http://localhost:8050/product/" + articleNumber, product); 
   }
 
-  deleteProduct(storeName: string, articleNumber: string): Observable<Product>{
-    return this.http.delete<Product>("http://localhost:8050/store/" + storeName + "/article/" + articleNumber); 
+  deleteProduct(articleNumber: string): Observable<Product>{
+    return this.http.delete<Product>("http://localhost:8050/product/" + articleNumber); 
   }
 
+  addStore(store: Store): Observable<Store>{
+    return this.http.post<Store>("http://localhost:8050/store", store); 
+  }
+
+  updateStore(articleNumber: string, storeName: string, store: Store): Observable<Store>{
+    return this.http.put<Store>("http://localhost:8050/product/" + articleNumber + "/store/" + storeName, store); 
+  }
+
+  deleteStore(articleNumber: string, storeName: string): Observable<Store>{
+    return this.http.delete<Store>("http://localhost:8050/product/" + articleNumber + "/store/" + storeName); 
+  }
 }

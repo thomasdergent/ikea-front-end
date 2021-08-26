@@ -1,11 +1,19 @@
 @import "./variables";
 
+.detailPage {
+    margin-top: 2rem !important;
+}
+
 .price {
     color: $addColor !important;
 }
 
 .notAvailable {
     color: $deleteColor !important;
+}
+
+.littleStock {
+    color: $editColor !important;
 }
 
 .product a {
@@ -19,6 +27,7 @@
 
 .detail img {
     max-width: 100% !important;
+    border-radius: 20px !important;
 }
 
 .detailsForm {
@@ -31,4 +40,8 @@
 
 .detailsForm button {
     margin-left: 1rem !important;
+  }
+
+  .description {
+      margin-top: 2rem !important;
   }

@@ -10,15 +10,15 @@ import { IkeaService } from 'src/app/services/ikea-service/ikea-service.service'
 })
 export class StoreDetailsComponent implements OnInit {
 
-  store: Store;
-  categoryProduct : Product[];
+  stores: Store[];
+  product: Product;
   spinner: Boolean = true;
-  
+
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private ikeaservice: IkeaService,
-  ) { 
+  ) {
     this.loadArticle();
   }
 
@@ -26,17 +26,18 @@ export class StoreDetailsComponent implements OnInit {
   }
 
   loadArticle() {
-    const storeName = this.route.snapshot.paramMap.get('storeName');
-    const articleNumber = this.route.snapshot.paramMap.get('articleNumber');
-    this.ikeaservice.getProductByStoreNameAndArticleNumber(storeName, articleNumber).subscribe(
-      result => {
-        this.store = result;
-        this.categoryProduct = result.categoryProducts;
+    this.route.params.subscribe(params => {
+      const articleNumber = this.route.snapshot.paramMap.get('articleNumber');
+      this.ikeaservice.getProductByArticleNumber(articleNumber).subscribe(
+        result => {
+          this.product = result;
+          this.stores = result.storeStocks;
 
-        if (result){
-          this.spinner = false;
+          if (result) {
+            this.spinner = false;
+          }
         }
-      }
-    )
+      )
+    });
   }
 }

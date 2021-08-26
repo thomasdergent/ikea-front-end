@@ -7,11 +7,11 @@
 
     <div *ngIf="spinner == false">
 
-      <div *ngFor="let product of categoryProduct">
+
 
         <h1>
           <mat-divider></mat-divider>
-          {{store.storeName}} 
+          Details
           <mat-icon color="accent" class="icon-display">arrow_right</mat-icon> 
           <span>{{product.category}}</span>
            <mat-icon color="accent" class="icon-display">arrow_right</mat-icon>
@@ -20,11 +20,20 @@
         </h1>
 
 
-        <div class="row ">
+        <div class="row detailPage">
           <div class="col-5 justify-content-center">
             <img
-              src="https://www.ikea.com/be/nl/images/products/lagkapten-alex-bureau-wit-gelazuurd-eiken-wit__0976179_pe813072_s5.jpg?f=xl"
-              alt="">
+              src="{{product.image}}"
+              alt="" class="shadow">
+
+              <div class="description">
+                <p class="font-weight-bold">
+                  Omschrijving product
+                </p>
+                <p>
+                  {{product.description}}
+                </p>
+              </div>
           </div>
           <div class="col-7">
             <h2>
@@ -32,12 +41,6 @@
             </h2>
             <p class="font-weight-light">
               Artikelnummer: {{product.articleNumber}}
-            </p>
-            <p class="font-weight-bold" *ngIf="product.delivery">
-             <span class="price">Beschikbaar voor levering</span>
-            </p>
-            <p class="font-weight-bold" *ngIf="!product.delivery">
-              <span class="notAvailable">Niet beschikbaar voor levering</span>
             </p>
             <mat-divider></mat-divider>
             <p class="font-weight-bold">
@@ -47,9 +50,11 @@
               {{product.size}}
             </p>
             <mat-divider></mat-divider>
-            <p>
-              Totaal items in stock: {{product.stock}}
+
+            <p class="font-weight-bold">
+              Product informatie
             </p>
+
             <ngb-accordion #acc="ngbAccordion">
               <ngb-panel id="toggle-1" class="accordion-title" title="Materiaal & onderhoud">
                 <ng-template ngbPanelContent>
@@ -67,7 +72,10 @@
                   </p>
                 </ng-template>
               </ngb-panel>  
-              <ngb-panel id="toggle-2" title="Duurzaamheid & milieu">
+            </ngb-accordion>
+
+            <ngb-accordion #acc="ngbAccordion">
+              <ngb-panel id="toggle-1" title="Duurzaamheid & milieu">
                 <ng-template ngbPanelContent>
                   <p class="font-weight-bold">
                     Duurzaamheid
@@ -78,7 +86,40 @@
                 </ng-template>
               </ngb-panel>  
             </ngb-accordion>
+
+            <mat-divider></mat-divider>
+
+            <p class="font-weight-bold" *ngIf="product.delivery">
+              <span class="price">Beschikbaar voor levering</span>
+             </p>
+             <p class="font-weight-bold" *ngIf="!product.delivery">
+               <span class="notAvailable">Niet beschikbaar voor levering</span>
+             </p>
+
+            <ngb-accordion #acc="ngbAccordion">
+              <ngb-panel id="toggle-1" class="accordion-title" title="Check de voorraad in de winkels">
+                <ng-template ngbPanelContent>
+                  <div *ngIf="stores.length <1">
+                    <span class="notAvailable">Niet beschibaar in onze winkels</span>
+                  </div>
+                  <div *ngFor="let store of stores">  
+                    <p class="font-weight-bold">
+                      {{store.storeName}} - {{store.stock}} stuks
+                    </p>
+                  
+                   <p *ngIf="store.stock <1">
+                    <span class="notAvailable">Niet voorradig</span>
+                   </p>
+                   <p *ngIf="store.stock >1 && store.stock <50">
+                    <span class="littleStock">Weinig voorradig</span>
+                   </p>
+                   <p *ngIf="store.stock >=50">
+                    <span class="price">Op voorraad</span>
+                   </p>
+                  </div>
+                </ng-template>
+              </ngb-panel>  
+            </ngb-accordion>
+
           </div>
         </div>
-
-      </div>

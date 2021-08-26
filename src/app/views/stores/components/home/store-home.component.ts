@@ -24,12 +24,6 @@ export class StoreHomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.ikeaservice.getStores().subscribe(
-      result => {
-        this.stores = result;
-        this.spinner = false;
-      }
-    )
   }
 
   submitStore(event: any) {

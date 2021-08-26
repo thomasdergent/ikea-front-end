@@ -37,9 +37,12 @@
             <span>Home</span>
         </button>
         <mat-divider></mat-divider>
-        <div class="test" *ngFor="let store of stores">
-            <button mat-button class="menu-button" routerLink="/store/{{store.storeName}}/products">
-                <span> {{store.storeName}}</span>
+        <button mat-button class="menu-button" routerLink="/store/products">
+            <span>Alle producten</span>
+        </button>
+        <div *ngFor="let category of categories">
+            <button mat-button class="menu-button" (click)="submitCategory(category)">
+                <span>{{category}}</span>
             </button>
         </div>
     </mat-sidenav>

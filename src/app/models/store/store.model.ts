@@ -1,28 +1,17 @@
-import { Product } from "../product/product.model";
-
 export class Store {
-    id: number;
+    id: string;
     storeName: string;
-    province: string;
-    city: string;
-    street: string;
-    number: number;
-    categoryProducts: Product[];
+    articleNumber: string;
+    stock: number;
     constructor(
         storeName: string,
-        province: string,
-        city: string,
-        street: string,
-        number: number,
-        id?: number,
-        categoryProducts?: Product[]
+        articleNumber: string,
+        stock: number,
+        id?: string,
     ) {
         this.storeName = storeName;
-        this.province = province;
-        this.city = city;
-        this.street = street;
-        this.number = number;
-        this.categoryProducts=categoryProducts;
+        this.articleNumber = articleNumber;
+        this.stock = stock;
         if (id){
             this.id = id;
         }

@@ -8,6 +8,7 @@ import { MSAL_GUARD_CONFIG, MsalGuardConfiguration, MsalService, MsalBroadcastSe
 import { AuthenticationResult, InteractionStatus, InteractionType, PopupRequest, RedirectRequest } from '@azure/msal-browser';
 import { Subject } from 'rxjs';
 import { filter, takeUntil } from 'rxjs/operators';
+import { Product } from 'src/app/models/product/product.model';
 import { Store } from 'src/app/models/store/store.model';
 import { IkeaService } from 'src/app/services/ikea-service/ikea-service.service';
 
@@ -18,6 +19,7 @@ type ProfileType = {
   id?: string,
   jobTitle?: string
 };
+
 
 @Component({
   templateUrl: './store.page.html',
@@ -32,8 +34,10 @@ export class StorePageComponent implements OnInit {
   profile!: ProfileType;
   private destroyed$: Subject<boolean> = new Subject<boolean>();
   public profilePicture: SafeUrl = '';
-  
-  stores: Store[];
+
+  products: Product[];
+  categories: any;
+  spinner: Boolean = true;
 
   constructor(
     private router: Router,
@@ -60,6 +64,8 @@ export class StorePageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadProducts();
+
     this.isIframe = window !== window.parent && !window.opener; // Remove this line to use Angular Universal
     this.setLoginDisplay();
 
@@ -72,14 +78,28 @@ export class StorePageComponent implements OnInit {
         this.setLoginDisplay();
         this.checkAndSetActiveAccount();
       })
+  }
 
-    this.ikeaservice.getStores().subscribe(
+  loadProducts() {
+
+    this.ikeaservice.getProducts().subscribe(
       result => {
-        this.stores = result;
-        console.log(result);
+        this.products = result;
+
+        this.categories = this.products.map(item => item.category)
+          .filter((value, index, self) => self.indexOf(value) === index);
+
+        if (result) {
+          this.spinner = false;
+        }
       }
     )
   }
+
+  submitCategory(category) {
+    this.router.navigate(['/store/products/' + category]);
+  }
+
 
   setLoginDisplay() {
     this.loginDisplay = this.authService.instance.getAllAccounts().length > 0;
@@ -115,7 +135,7 @@ export class StorePageComponent implements OnInit {
       }
     }
   }
-  
+
   logout(): void {
     if (this.msalGuardConfig.interactionType === InteractionType.Popup) {
       this.authService.logoutPopup({

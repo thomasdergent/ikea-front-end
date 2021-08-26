@@ -7,7 +7,7 @@
             close
         </mat-icon>
     </button>
-    <a id="navTitle" [routerLink]="['/']">
+    <a id="navTitle" [routerLink]="['home']">
         Ikea admin
     </a>
 
@@ -41,11 +41,10 @@
             <span>Store</span>
         </button>
         <mat-divider></mat-divider>
-        <div class="test" *ngFor="let store of stores">
-            <button mat-button class="menu-button" routerLink="overview/products/store/{{store.storeName}}">
-                <span> {{store.storeName}}</span>
-            </button>
-        </div>
+        <button mat-button class="menu-button" routerLink="/admin/overview/products">
+            <span>Productbeheer</span>
+        </button>
+        <mat-divider></mat-divider>
     </mat-sidenav>
     <mat-sidenav-content>
         <router-outlet></router-outlet>

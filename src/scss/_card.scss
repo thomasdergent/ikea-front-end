@@ -11,3 +11,16 @@
     box-shadow: 2px 0 35px 0 rgba(68, 88, 144, 0.12);
 }
 
+.card {
+    border-radius: 20px !important;
+    margin-bottom: 1rem !important;
+}
+
+.card img {
+    border-top-left-radius: 20px !important;
+    border-top-right-radius: 20px !important;
+}
+
+.detailCard {
+    margin-bottom: 2rem !important;
+}

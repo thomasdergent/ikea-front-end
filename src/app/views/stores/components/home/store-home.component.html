@@ -1,24 +1,15 @@
-<div *ngIf="spinner">
-  <mat-spinner diameter="130"></mat-spinner>
-</div>
-
-<div  *ngIf="!spinner" class="profile-card">
+<div class="profile-card">
     <mat-card class="profile-mat-card mat-elevation-z6">
       <mat-card-title>
         Welkom bij meubelcatalogus IKEA België!
       </mat-card-title>
       <mat-card-subtitle>
-        Kies hier een vestiging
+       Bezoek onze online winkel!
       </mat-card-subtitle>
       <mat-card-content>
-        <mat-form-field appearance="fill">
-            <mat-label>Winkels</mat-label>
-            <mat-select (selectionChange)="submitStore($event)">
-                <mat-option *ngFor="let store of stores" value="{{store.storeName}}">
-                    {{store.storeName}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
+     <p>
+      <button type="submit" mat-raised-button color="accent" routerLink="/store/products">Producten</button>
+     </p>     
       </mat-card-content>
     </mat-card>
   </div>

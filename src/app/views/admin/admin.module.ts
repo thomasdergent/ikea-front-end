@@ -10,6 +10,10 @@ import { AdminOverviewComponent } from './components/overview/admin-overview.com
 import { AdminInputComponent } from './components/input/admin-input.component';
 import { AdminDeleteComponent } from './components/delete/admin-delete.component';
 import { AdminHomeComponent } from './components/home/admin-home.component';
+import { StockOverviewComponent } from './components/stockbeheer-overview/stock-overview.component';
+import { AdminStockbeheerInputComponent } from './components/stockbeheer-input/admin-stockbeheer-input.component';
+import { AdminStockbeheerDetailsComponent } from './components/stockbeheer-details/admin-stockbeheer-details.component';
+import { AdminStockbeheerDeleteComponent } from './components/stockbeheer-delete/admin-stockbeheer-delete.component';
 
 
 
@@ -21,6 +25,10 @@ import { AdminHomeComponent } from './components/home/admin-home.component';
     AdminInputComponent,
     AdminDeleteComponent,
     AdminHomeComponent,
+    StockOverviewComponent,
+    AdminStockbeheerInputComponent,
+    AdminStockbeheerDetailsComponent,
+    AdminStockbeheerDeleteComponent,
   ],
   imports: [
     SharedModule,

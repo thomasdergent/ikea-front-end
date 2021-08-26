@@ -9,16 +9,17 @@ import { Store } from 'src/app/models/store/store.model';
 import { IkeaService } from 'src/app/services/ikea-service/ikea-service.service';
 
 @Component({
-  templateUrl: './store-overview.component.html',
-  styleUrls: ['./store-overview.component.scss']
+  templateUrl: './store-overview-category.component.html',
+  styleUrls: ['./store-overview-category.component.scss']
 })
-export class StoreOverviewComponent implements OnInit {
+export class StoreOverviewCategoryComponent implements OnInit {
 
   store: Store;
   products: Product[];
   spinner: Boolean = true;
   categories: any;
   selectedCategory = 'domain';
+  category: any;
 
   constructor(
     private router: Router,
@@ -33,45 +34,18 @@ export class StoreOverviewComponent implements OnInit {
 
 
   loadProducts() {
-    this.ikeaservice.getProducts().subscribe(
-      result => {
-        this.products = result;
+    this.route.params.subscribe(params => {
+      this.category = this.route.snapshot.paramMap.get('category');
 
-        this.categories = this.products.map(item => item.category)
-          .filter((value, index, self) => self.indexOf(value) === index)
-
-        if (result) {
-          this.spinner = false;
-        }
-      }
-    )
-  }
-
-  submitCategory(event: any) {
-    this.spinner = true;
-
-    if (event.value == "alle") {
-      this.ikeaservice.getProducts().subscribe(
+      this.ikeaservice.getProductsByCategory(this.category).subscribe(
         result => {
           this.products = result;
-          //  this.products = result.categoryProducts;
 
           if (result) {
             this.spinner = false;
           }
         }
       )
-    } else {
-      this.ikeaservice.getProductsByCategory(event.value).subscribe(
-        result => {
-          this.products = result;
-          //   this.products = result.categoryProducts;
-
-          if (result) {
-            this.spinner = false;
-          }
-        }
-      )
-    }
+    });
   }
 }

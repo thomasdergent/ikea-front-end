@@ -14,7 +14,7 @@ import { AdminDeleteComponent } from '../delete/admin-delete.component';
 export class AdminOverviewComponent implements OnInit {
 
   store: Store;
-  categoryProducts: Product[];
+  products: Product[];
   spinner: Boolean = true;
   categories: any;
   selectedCategory = 'domain';
@@ -28,10 +28,11 @@ export class AdminOverviewComponent implements OnInit {
     private ikeaservice: IkeaService,
     public dialog: MatDialog,
   ) {
-    this.loadProducts();
+
   }
 
   ngOnInit(): void {
+    this.loadProducts();
   }
 
   applyFilter(event: Event) {
@@ -41,46 +42,41 @@ export class AdminOverviewComponent implements OnInit {
 
 
   loadProducts() {
-    this.route.params.subscribe(params => {
+    this.ikeaservice.getProducts().subscribe(
+      result => {
+        this.products = result;
 
-      const storeName = params['storeName'];
-      this.ikeaservice.getProductsByStoreName(storeName).subscribe(
-        result => {
-          this.store = result;
-          this.categoryProducts = result.categoryProducts;
+        this.categories = this.products.map(item => item.category)
+          .filter((value, index, self) => self.indexOf(value) === index)
 
-          this.categories = this.categoryProducts.map(item => item.category)
-            .filter((value, index, self) => self.indexOf(value) === index)
-
-          if (result) {
-            this.dataSource = new MatTableDataSource<Product>(result.categoryProducts);
-            this.spinner = false;
-          }
+        if (result) {
+          this.dataSource = new MatTableDataSource<Product>(result);
+          this.spinner = false;
         }
-      )
-    });
+      }
+    )
   }
 
   submitCategory(event: any) {
     this.spinner = true;
 
-    if (event.value == this.store.storeName) {
-      this.ikeaservice.getProductsByStoreName(event.value).subscribe(
+    if (event.value == "alle") {
+      this.ikeaservice.getProducts().subscribe(
         result => {
-          this.store = result;
-          this.categoryProducts = result.categoryProducts;
-          this.dataSource = new MatTableDataSource<Product>(result.categoryProducts);
+          this.products = result;
+          //  this.products = result.categoryProducts;
+          this.dataSource = new MatTableDataSource<Product>(this.products);
           if (result) {
             this.spinner = false;
           }
         }
       )
     } else {
-      this.ikeaservice.getProductsByStoreNameAndCategory(this.store.storeName, event.value).subscribe(
+      this.ikeaservice.getProductsByCategory(event.value).subscribe(
         result => {
-          this.store = result;
-          this.categoryProducts = result.categoryProducts;
-          this.dataSource = new MatTableDataSource<Product>(result.categoryProducts);
+          this.products = result;
+          //   this.products = result.categoryProducts;
+          this.dataSource = new MatTableDataSource<Product>(this.products);
           if (result) {
             this.spinner = false;
           }
@@ -89,10 +85,10 @@ export class AdminOverviewComponent implements OnInit {
     }
   }
 
-  deleteDialog(storeName, articleNumber, name): void {
+  deleteDialog(articleNumber, name): void {
     const dialogRef = this.dialog.open(AdminDeleteComponent, {
-      data: { storeName: storeName, articleNumber: articleNumber, name: name}
-    } );
+      data: { articleNumber: articleNumber, name: name }
+    });
     dialogRef.afterClosed().subscribe(result => {
       this.loadProducts();
     });
