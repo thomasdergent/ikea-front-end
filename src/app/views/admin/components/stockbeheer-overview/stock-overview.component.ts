@@ -27,8 +27,8 @@ export class StockOverviewComponent implements OnInit {
     private ikeaservice: IkeaService,
     public dialog: MatDialog,
   ) {
-    this.route.data.subscribe(({ product }) => {
-      this.product = product
+    this.route.data.subscribe(({ data }) => {
+      this.product = data;
     this.loadStores();
     });
   }

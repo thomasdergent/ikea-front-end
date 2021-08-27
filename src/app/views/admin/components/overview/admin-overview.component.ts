@@ -29,11 +29,16 @@ export class AdminOverviewComponent implements OnInit {
     public dialog: MatDialog,
   ) {
     this.loadProducts();
+
+    this.route.data.subscribe(({ data }) => {
+      this.products = data
+    this.loadProducts();
+    });
   }
 
   ngOnInit(): void {
-    this.route.data.subscribe(({ products }) => {
-      this.products = products
+    this.route.data.subscribe(({ data }) => {
+      this.products = data
     this.loadProducts();
     });
 
