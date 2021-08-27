@@ -37,6 +37,9 @@ export class AdminInputComponent implements OnInit {
 
   submitDetails() {
     this.ikeaservice.addProduct(this.addProduct).subscribe();
-    this.router.navigate(['/admin/overview/products']);
+    this.router.navigate(['/admin/overview/products'],{
+      queryParams: {refresh: new Date().getTime()}
+      
+   });
   }
 }

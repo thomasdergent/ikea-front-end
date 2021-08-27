@@ -39,9 +39,11 @@ export class AdminDeleteComponent implements OnInit {
 
   deleteProduct() {
 
-    this.stores.forEach(store => {
-      this.ikeaservice.deleteStore(this.product.articleNumber, store.storeName).subscribe();
-    });
+    if (this.stores) {
+      this.stores.forEach(store => {
+        this.ikeaservice.deleteStore(this.product.articleNumber, store.storeName).subscribe();
+      });
+    }
 
     this.ikeaservice.deleteProduct(this.data.articleNumber).subscribe();
     this.dialogRef.close();

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { Product } from 'src/app/models/product/product.model';
 import { Store } from 'src/app/models/store/store.model';
 import { IkeaService } from 'src/app/services/ikea-service/ikea-service.service';
@@ -27,10 +27,21 @@ export class StockOverviewComponent implements OnInit {
     private ikeaservice: IkeaService,
     public dialog: MatDialog,
   ) {
+    this.route.data.subscribe(({ product }) => {
+      this.product = product
+    this.loadStores();
+    });
   }
 
   ngOnInit(): void {
     this.loadStores();
+
+    this.route.queryParamMap.subscribe((paramMap: ParamMap) => {
+      const refresh = paramMap.get('refresh');
+      if (refresh) {
+        this.loadStores();
+      }
+    });
   }
 
   applyFilter(event: Event) {
@@ -46,7 +57,7 @@ export class StockOverviewComponent implements OnInit {
         result => {
           this.product = result;
           this.stores = result.storeStocks;
-
+          this.dataSource = new MatTableDataSource<Store>(result.storeStocks);
           if (result) {
             this.dataSource = new MatTableDataSource<Store>(result.storeStocks);
             this.spinner = false;
@@ -61,7 +72,9 @@ export class StockOverviewComponent implements OnInit {
       data: { articleNumber: articleNumber, name: name }
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.loadStores();
+      this.router.navigate(['/admin/' + this.product.articleNumber + '/overview/stock'],{
+        queryParams: {refresh: new Date().getTime()}
+     });
     });
   }
 
@@ -70,7 +83,9 @@ export class StockOverviewComponent implements OnInit {
       data: { articleNumber: articleNumber, name: name, storeName: storeName }
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.loadStores();
+      this.router.navigate(['/admin/' + this.product.articleNumber + '/overview/stock'],{
+        queryParams: {refresh: new Date().getTime()}
+     });
     });
   }
 
@@ -79,7 +94,9 @@ export class StockOverviewComponent implements OnInit {
       data: { articleNumber: articleNumber, name: name, storeName: storeName }
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.loadStores();
+      this.router.navigate(['/admin/' + this.product.articleNumber + '/overview/stock'],{
+        queryParams: {refresh: new Date().getTime()}
+     });
     });
   }
 }

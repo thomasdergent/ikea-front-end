@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Product } from 'src/app/models/product/product.model';
 import { Store } from 'src/app/models/store/store.model';
 import { IkeaService } from 'src/app/services/ikea-service/ikea-service.service';
@@ -28,11 +28,21 @@ export class AdminOverviewComponent implements OnInit {
     private ikeaservice: IkeaService,
     public dialog: MatDialog,
   ) {
-
+    this.loadProducts();
   }
 
   ngOnInit(): void {
+    this.route.data.subscribe(({ products }) => {
+      this.products = products
     this.loadProducts();
+    });
+
+    this.route.queryParamMap.subscribe((paramMap: ParamMap) => {
+      const refresh = paramMap.get('refresh');
+      if (refresh) {
+        this.loadProducts();
+      }
+    });
   }
 
   applyFilter(event: Event) {
@@ -48,7 +58,7 @@ export class AdminOverviewComponent implements OnInit {
 
         this.categories = this.products.map(item => item.category)
           .filter((value, index, self) => self.indexOf(value) === index)
-
+          this.dataSource = new MatTableDataSource<Product>(result);
         if (result) {
           this.dataSource = new MatTableDataSource<Product>(result);
           this.spinner = false;
